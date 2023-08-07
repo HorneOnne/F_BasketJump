@@ -35,19 +35,23 @@ namespace BasketJump
             _playBtn.onClick.AddListener(() =>
             {
                 Loader.Load(Loader.Scene.GameplayScene);
-                //SoundManager.Instance.PlaySound(SoundType.Button, false);
+                SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
 
             _settingsBtn.onClick.AddListener(() =>
             {
                 UIManager.Instance.CloseAll();
                 UIManager.Instance.DisplaySettingsMenu(true);
+
+                SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
 
             _languageBtn.onClick.AddListener(() =>
             {
                 UIManager.Instance.CloseAll();
                 UIManager.Instance.DisplayLanguageMenu(true);
+
+                SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
         }
 

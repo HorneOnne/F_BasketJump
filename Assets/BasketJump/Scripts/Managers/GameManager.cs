@@ -8,13 +8,14 @@ namespace BasketJump
         public static event System.Action OnScoreUp;
 
         // SCORE & BEST
-        private int _score;
-        private int _bestScore;
+        private float _time;
+        private float _record;
 
 
         #region Properties
-        public int Score { get => _score; }
-        public int BestScore { get => _bestScore; }
+        public float Time { get => _time; }
+        public float Record { get => _record; }
+
         #endregion
         private void Awake()
         {
@@ -38,23 +39,18 @@ namespace BasketJump
         }
 
 
-        public void ScoreUp()
+
+        public void ResetTime()
         {
-            _score++;
-            OnScoreUp?.Invoke();
+            this._time = 0; 
         }
 
-        public void ResetScore()
+        public void SetRecord(float record)
         {
-            this._score = 0; 
-        }
-
-        public void SetBestScore(int score)
-        {
-            this._score = score;
-            if (_bestScore < score)
+            this._time = record;
+            if (_record < record)
             {
-                _bestScore = score;
+                _record = record;
             }
         }
     }

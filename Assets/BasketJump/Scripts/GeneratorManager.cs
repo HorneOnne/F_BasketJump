@@ -58,6 +58,8 @@ namespace BasketJump
             if(Time.time - _updateTimer > _updateTime)
             {
                 _updateTimer = Time.time;
+                if (GameplayManager.Instance.CurrentState == GameplayManager.GameState.GAMEOVER) return;
+
 
                 int currentY = (int)_ballPosition.position.y;
                 int maxY = currentY + _rangeToSpawnNewGenerator;

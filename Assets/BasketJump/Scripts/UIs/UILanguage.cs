@@ -31,21 +31,28 @@ namespace BasketJump
         private void Start()
         {
             LoadLanguague();
+            UpdateLanguageText();
 
             _backBtn.onClick.AddListener(() =>
             {
                 UIManager.Instance.CloseAll();
                 UIManager.Instance.DisplayMainMenu(true);
+
+                SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
 
             _leftBtn.onClick.AddListener(() =>
             {
                 ToggleLanguage();
+
+                SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
 
             _rightBtn.onClick.AddListener(() =>
             {
                 ToggleLanguage();
+
+                SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
         }
 
@@ -57,7 +64,7 @@ namespace BasketJump
         }
 
         private void LoadLanguague()
-        {         
+        {        
             _languageHeadingText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "LANGUAGE");
             _backBtnText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "BACK");      
         }

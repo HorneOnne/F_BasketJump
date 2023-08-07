@@ -27,15 +27,18 @@ namespace BasketJump
         {
             if(Input.GetMouseButton(0))
             {
-                Jump();
+                if(Utilities.IsPointerOverUIElement() == false)
+                    Jump();
             }
 
-            if(Time.time - timer > 1.0f)
+            if(Time.time - timer > 0.5f)
             {
                 timer = Time.time;
                 if (Utilities.IsObjectOutOfCameraView(this.transform))
                 {
                     GameplayManager.Instance.ChangeGameState(GameplayManager.GameState.GAMEOVER);
+                    SoundManager.Instance.PlaySound(SoundType.GameOver, false);
+                    Destroy(this.gameObject);
                 }
             }
         }
@@ -70,6 +73,8 @@ namespace BasketJump
             if (_platformLayer == (_platformLayer | (1 << collision.gameObject.layer)))
             {
                 ResetJump();
+
+                SoundManager.Instance.PlaySound(SoundType.Collided, false);
             }
         }
 

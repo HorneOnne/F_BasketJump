@@ -6,9 +6,9 @@ namespace BasketJump
 {
     public class UIGameover : CustomCanvas
     {
-        [Header("Buttons")]
-        [SerializeField] private Button _replayBtn;
+        [Header("Buttons")]       
         [SerializeField] private Button _menuBtn;
+        [SerializeField] private Button _replayBtn;
 
         [Header("Texts")]
         [SerializeField] private TextMeshProUGUI _gameoverText;
@@ -19,8 +19,6 @@ namespace BasketJump
 
         // Cached
         private GameManager _gameManager;
-        private string _scoreString = "";
-        private string _recordString = "";
 
         private void OnEnable()
         {
@@ -68,22 +66,31 @@ namespace BasketJump
 
         private void LoadScore()
         {
-            _scoreText.text = $"{_scoreString} {_gameManager.Score}";
+            _scoreText.text = $"{TimerManager.Instance.TimeToText()}";
         }
 
         private void LoadBest()
         {
-            _gameManager.SetBestScore(_gameManager.Score);
-            _recordText.text = $"{_recordString} {_gameManager.BestScore}";
+            _gameManager.SetRecord(TimerManager.Instance.Time);
+            _recordText.text = $"{TimerManager.Instance.TimeToText(GameManager.Instance.Record)}";
         }
 
         private void LoadLanguague()
         {
+            if (LanguageManager.Instance.CurrentLanguague == LanguageManager.Languague.France)
+            {
+                _replayBtnText.fontSize = 30;
+                _menuBtnText.fontSize = 30;
+            }
+            else
+            {
+                _replayBtnText.fontSize = 35;
+                _menuBtnText.fontSize = 35;
+            }
+
             _gameoverText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "GAME OVER");
             _replayBtnText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "REPLAY");
             _menuBtnText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "MENU");
-            _scoreString = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "SCORE");
-            _recordString = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "RECORD");
         }
     }
 }

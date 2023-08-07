@@ -761,9 +761,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18917feeb3539aa4abec34e6546a1264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundAudioClips: []
+  SoundAudioClips:
+  - soundType: 1
+    audioClips:
+    - {fileID: 8300000, guid: 5b7b8b69306fae7448fdbe7a9009a059, type: 3}
+  - soundType: 4
+    audioClips:
+    - {fileID: 8300000, guid: a24b93ad6efcff14881827b8f1e6bd93, type: 3}
+  - soundType: 5
+    audioClips:
+    - {fileID: 8300000, guid: eb75bc8677a6d834a8659c52f64c5658, type: 3}
   SFXVolume: 1
-  BackgroundSoundClip: {fileID: 0}
+  BackgroundSoundClip: {fileID: 8300000, guid: fbeb6d57c7848524fb07c3b93c9a2e3e, type: 3}
   BackgroundVolume: 1
   isMusicActive: 1
   isSoundFXActive: 1

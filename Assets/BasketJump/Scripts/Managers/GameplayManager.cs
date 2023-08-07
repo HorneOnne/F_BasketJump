@@ -36,7 +36,7 @@ namespace BasketJump
         private void Awake()
         {
             Instance = this;
-            GameManager.Instance.ResetScore();
+            GameManager.Instance.ResetTime();
         }
 
         private void OnEnable()
@@ -72,7 +72,6 @@ namespace BasketJump
                 case GameState.WAITING:
                     StartCoroutine(Utilities.WaitAfter(waitTimeBeforePlaying, () =>
                     {
-                        GameManager.Instance.ResetScore();
                         ChangeGameState(GameState.PLAYING);
                     }));
                     break;

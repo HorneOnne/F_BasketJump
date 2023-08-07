@@ -40,20 +40,10 @@ namespace BasketJump
         private void Update()
         {
             if (_isSetProperties == false) return;
+            if (GameplayManager.Instance.CurrentState == GameplayManager.GameState.GAMEOVER) return;
 
             if (_lastestObjectSpawned == null)
             {
-                /*switch(_moveType)
-                {
-                    default:break;
-                    case Platform.MoveType.LEFT_TO_RIGHT:
-                        SpawnPlatform(_platformPrefab, _leftSpawnPos.position).SetPlatformProperties(_leftSpawnPos.position, _moveType, _platformSpeed);
-                        break;
-                    case Platform.MoveType.RIGHT_TO_LEFT:
-                        SpawnPlatform(_platformPrefab, _rightSpawnPos.position).SetPlatformProperties(_rightSpawnPos.position, _moveType, _platformSpeed);
-                        break;
-                }*/
-
                 if (_moveType == Platform.MoveType.LEFT_TO_RIGHT)
                 {
                     for (int i = 0; i < 2; i++)

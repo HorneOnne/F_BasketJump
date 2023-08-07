@@ -229,27 +229,6 @@ namespace BasketJump
         }
         #endregion
 
-
-        #region BasketJump Addition
-   
-        public void AdjustVolume(float value = 0.25f)
-        {
-            SFXVolume += value;
-            BackgroundVolume += value;
-
-            if(SFXVolume < 0)
-                SFXVolume = 0;
-            if(SFXVolume > 1.0f)
-                SFXVolume = 1.0f;
-
-            if (BackgroundVolume < 0)
-                BackgroundVolume = 0;
-            if (BackgroundVolume > 1.0f)
-                BackgroundVolume = 1.0f;
-
-            UpdateBackgroundVolume();
-        }
-        #endregion
     }
 
     [System.Serializable]

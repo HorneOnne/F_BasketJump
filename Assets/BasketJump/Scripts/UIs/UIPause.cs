@@ -6,13 +6,14 @@ namespace BasketJump
 {
     public class UIPause : CustomCanvas
     {
-        [Header("Buttons")]
-        [SerializeField] private Button _continueBtn;
+        [Header("Buttons")]     
         [SerializeField] private Button _menuBtn;
+        [SerializeField] private Button _backBtn;
 
         [Header("Texts")]
-        [SerializeField] private TextMeshProUGUI _continueBtnText;
+        [SerializeField] private TextMeshProUGUI _pauseHeadingText;
         [SerializeField] private TextMeshProUGUI _menuBtnText;
+        [SerializeField] private TextMeshProUGUI _backBtnText;
 
         private void OnEnable()
         {
@@ -29,28 +30,33 @@ namespace BasketJump
         {
             LoadLanguague();
 
-            _continueBtn.onClick.AddListener(() =>
+            _backBtn.onClick.AddListener(() =>
             {
-                GameplayManager.Instance.ChangeGameState(GameplayManager.GameState.PLAYING);
                 UIGameplayManager.Instance.CloseAll();
+                GameplayManager.Instance.ChangeGameState(GameplayManager.GameState.PLAYING);
+
+                SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
 
             _menuBtn.onClick.AddListener(() =>
             {
-                GameplayManager.Instance.ChangeGameState(GameplayManager.GameState.EXIT);
+                Time.timeScale = 1.0f;
                 Loader.Load(Loader.Scene.MenuScene);
+
+                SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
         }
 
         private void OnDestroy()
         {
-            _continueBtn.onClick.RemoveAllListeners();
+            _backBtn.onClick.RemoveAllListeners();
             _menuBtn.onClick.RemoveAllListeners();
         }
 
         private void LoadLanguague()
         {
-            _continueBtnText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "CONTINUE");
+            _pauseHeadingText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "PAUSE");
+            _backBtnText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "BACK");
             _menuBtnText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "MENU");
         }
     }

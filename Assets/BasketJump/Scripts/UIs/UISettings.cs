@@ -35,11 +35,15 @@ namespace BasketJump
         private void Start()
         {
             LoadLanguague();
+            _soundSlider.value = SoundManager.Instance.SFXVolume;
+            _musicSlider.value = SoundManager.Instance.BackgroundVolume;
 
             _backBtn.onClick.AddListener(() =>
             {
                 UIManager.Instance.CloseAll();
                 UIManager.Instance.DisplayMainMenu(true);
+
+                SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
 
             _soundSlider.onValueChanged.AddListener(OnSoundSliderChanged);
@@ -63,12 +67,13 @@ namespace BasketJump
 
         private void OnSoundSliderChanged(float value)
         {
-            Debug.Log("Sound slider Changed");
+            SoundManager.Instance.SFXVolume = value;
         }
 
         private void OnMusicSliderChanged(float value)
         {
-            Debug.Log("Music slider Changed");
+            SoundManager.Instance.BackgroundVolume = value;
+            SoundManager.Instance.UpdateBackgroundVolume();
         }
     }
 }

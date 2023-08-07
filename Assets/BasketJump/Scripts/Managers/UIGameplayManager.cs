@@ -6,9 +6,9 @@ namespace BasketJump
     {
         public static UIGameplayManager Instance { get; private set; }
 
-        //public UIGameplay UIGameplay;
-        //public UIPause UIPause;
-        //public UIGameover UIGameover;
+        public UIGameplay UIGameplay;
+        public UIPause UIPause;
+        public UIGameover UIGameover;
 
 
 
@@ -32,12 +32,12 @@ namespace BasketJump
 
         public void DisplayPauseMenu(bool isActive)
         {
-            //UIPause.DisplayCanvas(isActive);
+            UIPause.DisplayCanvas(isActive);
         }
 
         public void DisplayGameoverMenu(bool isActive)
         {
-            //UIGameover.DisplayCanvas(isActive);
+            UIGameover.DisplayCanvas(isActive);
         }
     }
 }

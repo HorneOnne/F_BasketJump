@@ -11,22 +11,33 @@ namespace BasketJump
 
 
         [Header("Texts")]
-        [SerializeField] private TextMeshProUGUI _scoreText;
+        [SerializeField] private TextMeshProUGUI _timeText;
+
+
+        // Cached
+        private TimerManager _timerMnager;
+        private float _updateTimerFrequence = 0.2f;
+        private float _updateTimerFrequenceCount = 0.0f;
+
+        private void Awake()
+        {
+            _timerMnager = TimerManager.Instance;
+        }
 
         private void OnEnable()
         {
-            GameManager.OnScoreUp += UpdateScoreUI;
+            GameManager.OnScoreUp += UpdateTimeUI;
         }
 
         private void OnDisable()
         {
-            GameManager.OnScoreUp -= UpdateScoreUI;
+            GameManager.OnScoreUp -= UpdateTimeUI;
         }
 
 
         private void Start()
         {
-            UpdateScoreUI();
+            UpdateTimeUI();
 
 
             _pauseBtn.onClick.AddListener(() =>
@@ -40,14 +51,25 @@ namespace BasketJump
 
         }
 
+
+        private void Update()
+        {
+            if (Time.time - _updateTimerFrequenceCount > _updateTimerFrequence)
+            {
+                _updateTimerFrequenceCount = Time.time;
+                UpdateTimeUI();
+            }
+        }
+    
+        private void UpdateTimeUI()
+        {
+            _timeText.text = _timerMnager.TimeToText();
+        }
+
         private void OnDestroy()
         {
             _pauseBtn.onClick.RemoveAllListeners();
         }
 
-        private void UpdateScoreUI()
-        {
-            _scoreText.text = GameManager.Instance.Score.ToString();
-        }
     }
 }
