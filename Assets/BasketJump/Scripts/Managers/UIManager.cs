@@ -6,8 +6,9 @@ namespace BasketJump
     {
         public static UIManager Instance { get; private set; }
 
-        //public UIMainMenu UiMainMenu;
-        //public UIOptions UiOptions;
+        public UIMainMenu UIMainMenu;
+        public UISettings UISettings;
+        public UILanguage UILanguage;
  
 
 
@@ -25,18 +26,24 @@ namespace BasketJump
         public void CloseAll()
         {
             DisplayMainMenu(false);
-            DisplayOptionsMenu(false);
+            DisplaySettingsMenu(false);
+            DisplayLanguageMenu(false);
        
         }
 
         public void DisplayMainMenu(bool isActive)
         {
-            //UiMainMenu.DisplayCanvas(isActive);
+            UIMainMenu.DisplayCanvas(isActive);
         }
 
-        public void DisplayOptionsMenu(bool isActive)
+        public void DisplaySettingsMenu(bool isActive)
         {
-            //UiOptions.DisplayCanvas(isActive);
+            UISettings.DisplayCanvas(isActive);
+        }
+
+        public void DisplayLanguageMenu(bool isActive)
+        {
+            UILanguage.DisplayCanvas(isActive);
         }
     }
 }

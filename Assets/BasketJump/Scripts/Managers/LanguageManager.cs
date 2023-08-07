@@ -13,6 +13,8 @@ namespace BasketJump
         private Dictionary<string, string> dict = new Dictionary<string, string>()
         {
             {"PLAY", "JOUER"},
+            {"SETTINGS", "PARAMÈTRES"},
+            {"MUSIC", "MUSIQUE"},
             {"OPTIONS", "OPTIONS"},
             {"RECORD", "ENREGISTRER" },
             {"SOUND","SON"},
